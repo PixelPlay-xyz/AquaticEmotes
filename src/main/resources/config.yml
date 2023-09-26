@@ -1,0 +1,16 @@
+emotes:
+  testEmote:
+    model: "testEmote"
+    animation: "emote"
+    display:
+      material: STONE
+      display-name: "Test Emote"
+  loopEmote:
+    model: "loopEmote"
+    preAnimation: "preEmote"
+    animation: "emote"
+    postEmote: "postEmote"
+    loop: true
+    display:
+      material: STONE
+      display-name: "Loop Emote"

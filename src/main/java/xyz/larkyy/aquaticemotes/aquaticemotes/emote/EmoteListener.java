@@ -27,7 +27,9 @@ public class EmoteListener implements Listener {
     @EventHandler
     public void onSneak(PlayerToggleSneakEvent e) {
         if (!e.isSneaking()) return;
-        destroyEmote(e.getPlayer().getUniqueId());
+        Emote emote = AquaticEmotes.getInstance().getEmoteHandler().getPlayerEmote(e.getPlayer().getUniqueId());
+        if (emote == null) return;
+        emote.endAnimation();
     }
 
     private void destroyEmote(UUID playerUUID) {

@@ -39,6 +39,11 @@ public class AnimationHandler {
         }
     }
 
+    public void endEmote() {
+        animationState = AnimationState.ANIMATION;
+        playNext();
+    }
+
     private void playNext() {
         switch (animationState) {
             case PRE -> {
@@ -62,7 +67,6 @@ public class AnimationHandler {
     }
 
     private void onEmoteAnimationComplete() {
-        Bukkit.broadcastMessage("Despawning emote");
         emote.destroyEmote();
     }
 

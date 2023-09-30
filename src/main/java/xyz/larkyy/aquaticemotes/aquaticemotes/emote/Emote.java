@@ -20,6 +20,7 @@ public class Emote {
     private final UUID modelUUID;
     private boolean spawned;
     private final AnimationHandler animationHandler;
+    private boolean isEnding = false;
 
     public Emote(UUID playerUUID, EmoteInfo emoteInfo) {
         this.playerUUID = playerUUID;
@@ -45,9 +46,19 @@ public class Emote {
                 playerLimb.setTexture(player);
             });
         });
-
-        Bukkit.broadcastMessage("Spawning emote");
         return modeledEntity.getBase().getUUID();
+    }
+
+    public void endAnimation() {
+        if (isEnding) return;
+        isEnding = true;
+
+        if (emoteInfo.getPostAnimation() == null) {
+            destroyEmote();
+            return;
+        }
+
+        animationHandler.endEmote();
     }
 
     public void destroyEmote() {

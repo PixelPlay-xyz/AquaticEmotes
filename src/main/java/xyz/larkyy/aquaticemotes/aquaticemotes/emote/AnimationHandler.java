@@ -5,6 +5,7 @@ import com.ticxo.modelengine.api.animation.handler.IPriorityHandler;
 import com.ticxo.modelengine.api.animation.handler.IStateMachineHandler;
 import com.ticxo.modelengine.api.events.AnimationEndEvent;
 import com.ticxo.modelengine.api.model.ModeledEntity;
+import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;
 
 public class AnimationHandler {
@@ -26,6 +27,7 @@ public class AnimationHandler {
     }
 
     public void onAnimationEnd(AnimationEndEvent event) {
+        Bukkit.broadcast(Component.text("Animation ended"));
         playNext();
     }
 

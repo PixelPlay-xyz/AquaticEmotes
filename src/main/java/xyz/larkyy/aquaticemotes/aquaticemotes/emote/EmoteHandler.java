@@ -17,7 +17,10 @@ public class EmoteHandler {
         if (playingEmote != null) {
             playingEmote.destroyEmote();
         }
-        return new Emote(playerUUID,emoteInfo);
+        Emote emote = new Emote(playerUUID,emoteInfo);
+        spawnedEmotes.put(emote.getModelUUID(),emote);
+        playerEmotes.put(playerUUID,emote.getModelUUID());
+        return emote;
     }
 
     public Emote spawnEmote(String id, UUID playerUUID) {

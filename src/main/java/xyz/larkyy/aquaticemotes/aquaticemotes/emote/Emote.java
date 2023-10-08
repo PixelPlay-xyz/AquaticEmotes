@@ -37,6 +37,12 @@ public class Emote {
         modeledEntity.addModel(activeModel, false);
         spawned = true;
 
+        var op = Bukkit.getOfflinePlayer(playerUUID);
+        if (op.isOnline()) {
+            var p = op.getPlayer();
+            p.setInvisible(true);
+        }
+
         if(modeledEntity.getBase().getData() instanceof BukkitEntityData data) {
             data.getTracked().addForcedPairing(player);
         }
@@ -66,11 +72,17 @@ public class Emote {
         ModelEngineAPI.getModeledEntity(modelUUID).destroy();
         spawned = false;
 
-        getEmoteHandler().getSpawnedEmotes().remove(modelUUID);
+        var op = Bukkit.getOfflinePlayer(playerUUID);
+        if (op.isOnline()) {
+            var p = op.getPlayer();
+            p.setInvisible(false);
+        }
+
         if (getEmoteHandler().getPlayerEmotes().containsKey(playerUUID) &&
                 getEmoteHandler().getPlayerEmote(playerUUID).equals(modelUUID)) {
             getEmoteHandler().getPlayerEmotes().remove(playerUUID);
         }
+        getEmoteHandler().getSpawnedEmotes().remove(modelUUID);
     }
 
     public EmoteInfo getEmoteInfo() {

@@ -48,7 +48,7 @@ public final class AquaticEmotes extends JavaPlugin {
 
     @Override
     public void onDisable() {
-        // Plugin shutdown logic
+        unload();
     }
 
     public static AquaticEmotes getInstance() {
